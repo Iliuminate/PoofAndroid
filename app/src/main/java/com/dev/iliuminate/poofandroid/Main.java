@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TabHost;
 import android.widget.Toast;
@@ -161,9 +162,34 @@ public class Main extends Activity {
                 Toast.makeText(Main.this, "Tamaño: "+items.size(), Toast.LENGTH_LONG).show();
                 Log.e("Tiendas","Tamaño: "+items.size());
 
-                load_stock(items);
+                load_items(items);
+
             }
         });
+
+    }
+
+
+
+    private void load_items(ArrayList<Item> lista)
+    {
+        List<String> aux=new ArrayList<String>();
+        for(Item item:lista)
+        {
+            aux.add("Item:          "+item.getName()+
+                    "\nValue:        "+item.getPrice()+
+                    "\nCategory: "+item.getCategory()
+            );
+
+        }
+
+        try {
+            ArrayAdapter<String> adapter = new ArrayAdapter<String>(Main.this,
+                    android.R.layout.simple_list_item_1, aux);
+            listStock.setAdapter(adapter);
+        } catch (Exception e) {
+            Log.e("Adapter",e+"");
+        }
 
     }
 
