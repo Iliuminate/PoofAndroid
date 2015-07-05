@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -12,12 +11,7 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RadioButton;
-import android.widget.Spinner;
-import android.widget.Toast;
 
-import com.dev.iliuminate.database.User;
-
-import java.sql.Date;
 import java.util.Calendar;
 
 public class RegClient extends Activity {
@@ -76,7 +70,7 @@ public class RegClient extends Activity {
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                addUser();
+
             }
         });
 
@@ -85,38 +79,6 @@ public class RegClient extends Activity {
 
 
 
-    private void addUser()
-    {
-        User user=new User();
-        boolean user_add=true;
-        user.setUserName(edtUserName.getText().toString());
-        user.setName(edtName.getText().toString());
-        user.setLastName(edtLastName.getText().toString());
-
-        if(validar_vacios()) {
-
-            if (edtPass1.getText().toString().equals(edtPass2.getText().toString()))
-                user.setPasseord(edtPass1.getText().toString());
-            else
-                user_add = false;
-
-            try {
-                //user.setBirthdate(Date.valueOf(edtBirthdate.getText().toString()));
-               // user.setBirthdate(Date.parse("2015/05/02"));
-            } catch (Exception e) {
-                Log.i("No insert User", e + "");
-                user_add = false;
-            } finally {
-            }
-
-            if (user_add)
-                user.save();
-        }
-        else
-        {
-            Toast.makeText(this, "Validar Campos", Toast.LENGTH_SHORT).show();
-        }
-    }
 
     String a,b,c,d,e,f,g;
     private boolean validar_vacios()

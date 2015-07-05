@@ -6,65 +6,86 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
-    tools:context="com.dev.iliuminate.poofandroid.RegShop">
+    tools:context="com.dev.iliuminate.poofandroid.RegShop"
+    android:background="@drawable/page_3_bg"
+    android:id="@+id/ly">
 
     <EditText
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="35dp"
         android:id="@+id/edtRegShopName"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:hint="@string/reg_shop_name"
-        android:layout_marginTop="3dp" />
+        android:layout_marginTop="80dp"
+        android:background="#ffffffff"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp" />
 
     <EditText
         android:layout_width="200dp"
-        android:layout_height="wrap_content"
+        android:layout_height="35dp"
         android:id="@+id/edtRegShopNUIP"
         android:layout_below="@+id/edtRegShopName"
-        android:layout_centerHorizontal="true"
         android:hint="@string/reg_shop_nit"
-        android:layout_marginTop="3dp" />
+        android:layout_marginTop="5dp"
+        android:layout_alignRight="@+id/edtRegShopName"
+        android:layout_alignEnd="@+id/edtRegShopName"
+        android:background="#ffffffff"
+        android:layout_alignLeft="@+id/edtRegShopName"
+        android:layout_alignStart="@+id/edtRegShopName" />
 
     <EditText
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="35dp"
         android:inputType="textEmailAddress"
         android:ems="10"
         android:id="@+id/edtRegShopMail"
         android:layout_below="@+id/edtRegShopNUIP"
-        android:layout_centerHorizontal="true"
         android:hint="@string/reg_shop_mail"
-        android:layout_marginTop="3dp" />
+        android:layout_marginTop="5dp"
+        android:background="#ffffffff"
+        android:layout_alignLeft="@+id/edtRegShopNUIP"
+        android:layout_alignStart="@+id/edtRegShopNUIP"
+        android:layout_alignRight="@+id/edtRegShopNUIP"
+        android:layout_alignEnd="@+id/edtRegShopNUIP" />
 
     <EditText
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="35dp"
         android:inputType="textPassword"
         android:ems="10"
         android:id="@+id/edtRegShopPass1"
         android:layout_below="@+id/edtRegShopMail"
-        android:layout_centerHorizontal="true"
         android:hint="@string/reg_shop_pass"
-        android:layout_marginTop="3dp" />
+        android:layout_marginTop="5dp"
+        android:layout_alignRight="@+id/edtRegShopMail"
+        android:layout_alignEnd="@+id/edtRegShopMail"
+        android:background="#ffffffff"
+        android:layout_alignLeft="@+id/edtRegShopMail"
+        android:layout_alignStart="@+id/edtRegShopMail" />
 
     <EditText
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="35dp"
         android:inputType="textPassword"
         android:ems="10"
         android:id="@+id/edtRegShopPass2"
         android:layout_below="@+id/edtRegShopPass1"
-        android:layout_centerHorizontal="true"
         android:hint="@string/reg_shop_repeat_pass"
-        android:layout_marginTop="3dp" />
+        android:layout_marginTop="5dp"
+        android:layout_alignRight="@+id/edtRegShopPass1"
+        android:layout_alignEnd="@+id/edtRegShopPass1"
+        android:background="#ffffffff"
+        android:layout_alignLeft="@+id/edtRegShopPass1"
+        android:layout_alignStart="@+id/edtRegShopPass1" />
 
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/btnRegShopImg"
         android:src="@drawable/ic_launcher"
-        android:layout_below="@+id/edtPhone"
+        android:layout_below="@+id/edtName"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="48dp" />
 
@@ -77,17 +98,22 @@
         android:layout_alignEnd="@+id/edtRegShopPass2"
         android:layout_alignLeft="@+id/edtRegShopPass2"
         android:layout_alignStart="@+id/edtRegShopPass2"
-        android:layout_marginTop="3dp" />
+        android:layout_marginTop="5dp"
+        android:background="#ffffffff" />
 
     <EditText
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="35dp"
         android:inputType="phone"
         android:ems="10"
-        android:id="@+id/edtPhone"
+        android:id="@+id/edtName"
         android:layout_below="@+id/spinnerShop"
         android:layout_alignLeft="@+id/spinnerShop"
         android:layout_alignStart="@+id/spinnerShop"
-        android:hint="@string/reg_shop_phone" />
+        android:hint="@string/reg_shop_phone"
+        android:layout_alignRight="@+id/spinnerShop"
+        android:layout_alignEnd="@+id/spinnerShop"
+        android:background="#ffffffff"
+        android:layout_marginTop="5dp" />
 
 </RelativeLayout>

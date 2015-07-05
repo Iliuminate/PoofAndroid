@@ -6,23 +6,15 @@
     <uses-permission android:name="android.permission.INTERNET"></uses-permission>
 
     <application
-        android:name="com.orm.SugarApp"
-        android:allowBackup="true"
-        android:icon="@drawable/ic_launcher"
-        android:label="@string/app_name"
+
+        android:icon="@drawable/poof_logo"
+        android:label="Poof!"
         android:theme="@style/AppTheme" >
-
-
-
-        <meta-data android:name="DATABASE" android:value="poof.db" />
-        <meta-data android:name="VERSION" android:value="2" />
-        <meta-data android:name="QUERY_LOG" android:value="true" />
-        <meta-data android:name="DOMAIN_PACKAGE_NAME" android:value="com.dev.iliuminate" />
 
 
         <activity
             android:name=".Splash"
-            android:label="@string/title_activity_splash" >
+            android:label="Poof!" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -31,7 +23,7 @@
         </activity>
         <activity
             android:name=".Main"
-            android:label="@string/app_name" >
+            android:label="Poof!" >
         </activity>
         <activity
             android:name=".Login"

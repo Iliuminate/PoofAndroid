@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 
@@ -16,19 +17,19 @@ public class Login extends Activity {
 
 
     EditText edtName, edtPass;
-    ImageView btnLogin, btnRegister;
+    Button btnLogin, btnRegister;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.acty_login);
+        setContentView(R.layout.page_2);
 
 
 
         edtName=(EditText)findViewById(R.id.edtName);
         edtPass=(EditText)findViewById(R.id.edtPass);
-        btnLogin=(ImageView)findViewById(R.id.btnLoginImg);
-        btnRegister=(ImageView)findViewById(R.id.btnRegisterImg);
+        btnLogin=(Button)findViewById(R.id.btnLoginImg);
+        btnRegister=(Button)findViewById(R.id.btnRegisterImg);
 
 
         btnLogin.setOnClickListener(new View.OnClickListener() {

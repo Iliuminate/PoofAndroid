@@ -16,11 +16,9 @@ import com.dev.iliuminate.structures.Store;
 import com.google.gson.Gson;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
-import com.loopj.android.http.JsonHttpResponseHandler;
 
 import org.apache.http.Header;
 import org.apache.http.entity.StringEntity;
-import org.json.JSONObject;
 
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
@@ -43,7 +41,7 @@ public class RegShop extends Activity {
         edtMail=(EditText)findViewById(R.id.edtRegShopMail);
         edtPass1=(EditText)findViewById(R.id.edtRegShopPass1);
         edtPass2=(EditText)findViewById(R.id.edtRegShopPass2);
-        edtPhone=(EditText)findViewById(R.id.edtPhone);
+        edtPhone=(EditText)findViewById(R.id.edtName);
 
         spRazon=(Spinner)findViewById(R.id.spinnerShop);
         btnRegister=(ImageView)findViewById(R.id.btnRegShopImg);

@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.Window;
+
 import com.dev.iliuminate.poofandroid.R;
 
 import java.util.Timer;
@@ -16,6 +18,7 @@ public class Splash extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.acty_splash);
 
 
@@ -32,7 +35,7 @@ public class Splash extends Activity {
         // Aquí se pone en marcha el timer cada segundo.
         Timer timer = new Timer();
         // Dentro de 0 milisegundos avísame cada 1000 milisegundos
-        timer.schedule(timerTask, 2000);
+        timer.schedule(timerTask, 2100);
         //timer.scheduleAtFixedRate(timerTask, 0, 3000);//Para controlar ciclos
 
 
