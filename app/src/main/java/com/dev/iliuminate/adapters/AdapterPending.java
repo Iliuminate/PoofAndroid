@@ -83,7 +83,7 @@ public class AdapterPending extends BaseAdapter {
             d.setText(phone);
             e.setText(direction);
         } catch (Exception e1) {
-            Log.e("Pending", e + "");
+            Log.e("PendingAdapter", e + "");
         }
 
 

@@ -2,6 +2,7 @@ package com.dev.iliuminate.adapters;
 
 import android.app.Activity;
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -50,7 +51,7 @@ public class AdapterServiceStock extends BaseAdapter {
     }
 
     @Override
-    public View getView(int i, View view, ViewGroup viewGroup) {
+    public View getView(int position, View view, ViewGroup viewGroup) {
 
         //Declaramos todos los objetos View que usaremos para el respectivo adapter
         View viewObj=view;
@@ -66,11 +67,16 @@ public class AdapterServiceStock extends BaseAdapter {
         imgSerciesStock=(ImageView)viewObj.findViewById(R.id.imgServicesStock);
 
 
-       // String itemName=(Stock)lista.get(i);
+        String itemName=((Stock)lista.get(position)).getItemName()+"";
+        String value=((Stock)lista.get(position)).getValue()+"";
 
 
-        a.setText();
-        b.setText("2");
+        try {
+            a.setText("Item: "+itemName);
+            b.setText("Value: "+value);
+        } catch (Exception e) {
+            Log.e("StockAdapter", "");
+        }
 
         imgSerciesStock.setImageResource(R.drawable.ic_launcher);
 

@@ -81,7 +81,7 @@ public class AdapterDone extends BaseAdapter {
             d.setText(phone);
             e.setText(direction);
         } catch (Exception e1) {
-            Log.e("Done", e + "");
+            Log.e("DoneAdapter", e + "");
         }
 
         return viewObj;
