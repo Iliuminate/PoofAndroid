@@ -139,8 +139,9 @@ public class Login extends Activity {
 
     private void launch_main(int store_id)
     {
+        Log.e("Login","Item: "+store_id);
         Intent i=new Intent(this, Main.class);
-        i.putExtra("SOTER_IDE",store_id);
+        i.putExtra("SOTER_IDE",store_id+"");
         startActivity(i);
     }
 

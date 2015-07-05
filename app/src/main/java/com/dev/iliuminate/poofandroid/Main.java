@@ -1,6 +1,7 @@
 package com.dev.iliuminate.poofandroid;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -15,12 +16,16 @@ import com.dev.iliuminate.adapters.AdapterServiceStock;
 import com.dev.iliuminate.structures.Pending;
 import com.dev.iliuminate.structures.Done;
 import com.dev.iliuminate.structures.Stock;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.TextHttpResponseHandler;
 
 import org.apache.http.Header;
 
+import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.List;
 
 
 public class Main extends Activity {
@@ -74,8 +79,8 @@ public class Main extends Activity {
         Done done;
         Stock stock;
 
-
-
+        consultarTiendas(getIntent().getStringExtra("SOTER_IDE"));
+        Log.e("Tiendas","Item: "+getIntent().getStringExtra("SOTER_IDE"));
        /* for (int i=0; i<=10;i++) {
             peding=new Pending();
             peding.setUser_name("Carlos"+i);
@@ -130,32 +135,33 @@ public class Main extends Activity {
 
 
 
-    public void loginWS (String phone)
+    public void consultarTiendas (String tienda_id)
     {
 
-        final String endpoint = "http://192.168.0.101:8080/PoofAPI/v1/store/login/"+phone;
+        final String endpoint = "http://192.168.0.101:8080/PoofAPI/v1/item/storeInventory/"+tienda_id;
         AsyncHttpClient client = new AsyncHttpClient();
 
 
         client.get(endpoint, new TextHttpResponseHandler() {
             @Override
             public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
-
+                Log.e("Tiendas","Error consultando tiendas: "+statusCode+" - "+responseString);
             }
 
             @Override
             public void onSuccess(int statusCode, Header[] headers, String responseString) {
-                int store_id = Integer.parseInt(responseString);
+                Gson gson=new Gson();
 
-                if (store_id > -1)
-                {
-                    Toast.makeText(Main.this, "Bienvenido", Toast.LENGTH_LONG).show();
-                    //launch_main(store_id);
-                }
-                else
-                {
-                    Toast.makeText(Main.this, "Usuario no valido", Toast.LENGTH_LONG).show();
-                }
+                //List<Item> items = gson.fromJson(responseString, Class<List<Item>>);
+
+                Type listType = new TypeToken<ArrayList<Item>>() {
+                }.getType();
+                ArrayList<Item> items = new Gson().fromJson(responseString, listType);
+
+                Toast.makeText(Main.this, "Tamaño: "+items.size(), Toast.LENGTH_LONG).show();
+                Log.e("Tiendas","Tamaño: "+items.size());
+
+                load_stock(items);
             }
         });
 
