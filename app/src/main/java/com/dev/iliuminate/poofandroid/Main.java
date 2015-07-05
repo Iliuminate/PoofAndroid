@@ -7,6 +7,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ListView;
 import android.widget.TabHost;
+import android.widget.Toast;
 
 import com.dev.iliuminate.adapters.AdapterPending;
 import com.dev.iliuminate.adapters.AdapterDone;
@@ -14,6 +15,10 @@ import com.dev.iliuminate.adapters.AdapterServiceStock;
 import com.dev.iliuminate.structures.Pending;
 import com.dev.iliuminate.structures.Done;
 import com.dev.iliuminate.structures.Stock;
+import com.loopj.android.http.AsyncHttpClient;
+import com.loopj.android.http.TextHttpResponseHandler;
+
+import org.apache.http.Header;
 
 import java.util.ArrayList;
 
@@ -58,6 +63,11 @@ public class Main extends Activity {
         tabSpec.setIndicator("Service Stock");
         tabhost.addTab(tabSpec);
 
+        ArrayList<Pending> aux=new ArrayList<Pending>();
+        ArrayList<Done> aux2=new ArrayList<Done>();
+        ArrayList<Stock> aux3=new ArrayList<Stock>();
+
+
 
         //Instanciamos un ejemplo de cada estructura
         Pending peding;
@@ -66,11 +76,7 @@ public class Main extends Activity {
 
 
 
-        ArrayList<Pending> aux=new ArrayList<Pending>();
-        ArrayList<Done> aux2=new ArrayList<Done>();
-        ArrayList<Stock> aux3=new ArrayList<Stock>();
-
-        for (int i=0; i<=10;i++) {
+       /* for (int i=0; i<=10;i++) {
             peding=new Pending();
             peding.setUser_name("Carlos"+i);
             peding.setValue(1614+i);
@@ -93,10 +99,10 @@ public class Main extends Activity {
             stock.setItemName("item "+i);
             stock.setValue(10+i);
             aux3.add(stock);
-        }
+        }*/
 
 
-        //Cargamos la lista en la pantalla PENDING
+        /*//Cargamos la lista en la pantalla PENDING
         try {
             adapterPending = new AdapterPending (Main.this, aux);
             listPending.setAdapter(adapterPending);
@@ -118,9 +124,73 @@ public class Main extends Activity {
             listStock.setAdapter(adapterStock);
         } catch (Exception e) {
             Log.e("TOUCH LIST", "Error inicializando la lista> " + e.toString());
-        }
+        }*/
 
     }
+
+
+
+    public void loginWS (String phone)
+    {
+
+        final String endpoint = "http://192.168.0.101:8080/PoofAPI/v1/store/login/"+phone;
+        AsyncHttpClient client = new AsyncHttpClient();
+
+
+        client.get(endpoint, new TextHttpResponseHandler() {
+            @Override
+            public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
+
+            }
+
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, String responseString) {
+                int store_id = Integer.parseInt(responseString);
+
+                if (store_id > -1)
+                {
+                    Toast.makeText(Main.this, "Bienvenido", Toast.LENGTH_LONG).show();
+                    //launch_main(store_id);
+                }
+                else
+                {
+                    Toast.makeText(Main.this, "Usuario no valido", Toast.LENGTH_LONG).show();
+                }
+            }
+        });
+
+    }
+
+    private void load_pending(ArrayList<Pending> aux)
+    {
+        try {
+            adapterPending = new AdapterPending (Main.this, aux);
+            listPending.setAdapter(adapterPending);
+        } catch (Exception e) {
+            Log.e("TOUCH LIST", "Error inicializando la lista> " + e.toString());
+        }
+    }
+
+    private void load_done(ArrayList<Done> aux2)
+    {
+        try {
+            adapterDone = new AdapterDone (Main.this, aux2);
+            listDone.setAdapter(adapterDone);
+        } catch (Exception e) {
+            Log.e("TOUCH LIST", "Error inicializando la lista> " + e.toString());
+        }
+    }
+
+    private void load_stock(ArrayList<Stock> aux3)
+    {
+        try {
+            adapterStock = new AdapterServiceStock(Main.this, aux3);
+            listStock.setAdapter(adapterStock);
+        } catch (Exception e) {
+            Log.e("TOUCH LIST", "Error inicializando la lista> " + e.toString());
+        }
+    }
+
 
 
     @Override

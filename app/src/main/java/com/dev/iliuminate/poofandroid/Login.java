@@ -4,14 +4,25 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.dev.iliuminate.poofandroid.R;
+import com.google.gson.Gson;
+import com.loopj.android.http.AsyncHttpClient;
+import com.loopj.android.http.AsyncHttpResponseHandler;
+import com.loopj.android.http.TextHttpResponseHandler;
+
+import org.apache.http.Header;
+import org.apache.http.entity.StringEntity;
+
+import java.io.UnsupportedEncodingException;
 
 public class Login extends Activity {
 
@@ -25,7 +36,6 @@ public class Login extends Activity {
         setContentView(R.layout.page_2);
 
 
-
         edtName=(EditText)findViewById(R.id.edtName);
         edtPass=(EditText)findViewById(R.id.edtPass);
         btnLogin=(Button)findViewById(R.id.btnLoginImg);
@@ -35,7 +45,7 @@ public class Login extends Activity {
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                launch_main();
+                loginWS(edtName.getText().toString());
             }
         });
 
@@ -83,7 +93,36 @@ public class Login extends Activity {
     }
 
 
+    public void loginWS (String phone)
+    {
 
+        final String endpoint = "http://192.168.0.101:8080/PoofAPI/v1/store/login/"+phone;
+        AsyncHttpClient client = new AsyncHttpClient();
+
+
+        client.get(endpoint, new TextHttpResponseHandler() {
+            @Override
+            public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
+
+            }
+
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, String responseString) {
+                int store_id = Integer.parseInt(responseString);
+
+                if (store_id > -1)
+                {
+                    Toast.makeText(Login.this, "Bienvenido", Toast.LENGTH_LONG).show();
+                    launch_main(store_id);
+                }
+                else
+                {
+                    Toast.makeText(Login.this, "Usuario no valido", Toast.LENGTH_LONG).show();
+                }
+            }
+        });
+
+    }
 
 
     private void registerClient()
@@ -98,9 +137,10 @@ public class Login extends Activity {
         startActivity(i);
     }
 
-    private void launch_main()
+    private void launch_main(int store_id)
     {
         Intent i=new Intent(this, Main.class);
+        i.putExtra("SOTER_IDE",store_id);
         startActivity(i);
     }
 
